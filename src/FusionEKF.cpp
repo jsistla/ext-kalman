@@ -98,6 +98,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 
         previous_timestamp_ = measurement_pack.timestamp_;
 
+        // done initializing, no need to predict or update
         is_initialized_ = true;
         return;
     }
@@ -126,10 +127,14 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 
     ekf_.Predict();
 
-    /*****************************************************************************
-     *  Update
-     ****************************************************************************/
+  /*****************************************************************************
+   *  Update
+   ****************************************************************************/
 
+  /**
+     * Use the sensor type to perform the update step.
+     * Update the state and covariance matrices.
+   */
     if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
         // Radar updates
         ekf_.R_ = R_radar_;
@@ -142,4 +147,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
         ekf_.H_ = H_laser_;
         ekf_.Update(measurement_pack.raw_measurements_);
     }
+  // print the output
+  //cout << "x_ = " << ekf_.x_ << endl;
+  //cout << "P_ = " << ekf_.P_ << endl;
 }

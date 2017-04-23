@@ -36,7 +36,7 @@ private:
   bool is_initialized_;
 
   // previous timestamp
-  long previous_timestamp_;
+  long long previous_timestamp_;
 
   // tool object used to compute Jacobian and RMSE
   Tools tools;
@@ -45,8 +45,8 @@ private:
   Eigen::MatrixXd H_laser_;
   Eigen::MatrixXd Hj_;
 
-    float sigma_ax = 9;
-    float sigma_ay = 9;
+  float sigma_ax = 13;
+  float sigma_ay = 13;
 };
 
 #endif /* FusionEKF_H_ */
