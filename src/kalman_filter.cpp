@@ -6,6 +6,8 @@
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
 
+#define PI 3.1415926535897
+
 KalmanFilter::KalmanFilter() {}
 
 KalmanFilter::~KalmanFilter() {}
@@ -58,22 +60,24 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
     double vx = x_[2];
     double vy = x_[3];
 
-    /*if (fabs(px) < 0.0001) {
-        px = 0.0001;
-    }*/
-
     double rho = sqrt(px * px + py * py);
-    /*if (fabs(rho) < 0.0001) {
-        rho = 0.0001;
-    }*/
-
     double phi = atan2(py,  px);
+
+    if(rho < 1e-6) rho = 1e-6;
     double rho_dot = (px * vx + py * vy) / rho;
 
     VectorXd z_pred(3);
     z_pred << rho, phi, rho_dot;
 
     VectorXd y = z - z_pred;
+
+    while(y[1]> PI || y[1] < -PI)
+    {
+	    if(y[1] > PI)
+		    y[1]-= PI;
+	    else y[1]+= PI;
+    }
+
     MatrixXd Ht = H_.transpose();
     MatrixXd S = H_ * P_ * Ht + R_;
     MatrixXd Si = S.inverse();
