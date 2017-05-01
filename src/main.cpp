@@ -69,7 +69,7 @@ int main(int argc, char* argv[]) {
   // prep the measurement packages (each line represents a measurement at a
   // timestamp)
   while (getline(in_file_, line)) {
-
+    std::cout << "input:" << line << std::endl;
     string sensor_type;
     MeasurementPackage meas_package;
     GroundTruthPackage gt_package;
@@ -169,7 +169,7 @@ int main(int argc, char* argv[]) {
 
   // compute the accuracy (RMSE)
   Tools tools;
-  cout << "Accuracy - RMSE:" << endl << tools.CalculateRMSE(estimations, ground_truth) << endl;
+  cout << "Accuracy - RMSE:" << cout << tools.CalculateRMSE(estimations, ground_truth) << endl;
 
   // close files
   if (out_file_.is_open()) {
