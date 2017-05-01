@@ -73,9 +73,9 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
 
     while(y[1]> PI || y[1] < -PI)
     {
-	    if(y[1] > PI)
-		    y[1]-= PI;
-	    else y[1]+= PI;
+        if(y[1] > PI)
+            y[1]-= PI;
+        else y[1]+= PI;
     }
 
     MatrixXd Ht = H_.transpose();

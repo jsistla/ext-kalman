@@ -1,5 +1,5 @@
 /**
- * Initialize the Kalman Filter, 
+ * Initialize the Kalman Filter,
  * prepare the Q and F matrices for the prediction step,
  * call the radar and lidar update functions.
  * */

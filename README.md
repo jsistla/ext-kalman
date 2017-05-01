@@ -1,20 +1,29 @@
-# Extended Kalman Filter Project Starter Code
+# Extended Kalman Filter Project:
 Self-Driving Car Engineer Nanodegree Program
 
 ---
 
-## Dependencies
+This Project is the sixth task (Project 1 of Term 2) of the Udacity Self-Driving Car Nanodegree program. 
+The main goal of the project is to apply Extended Kalman Filter to fuse data from LIDAR and Radar sensors of a self driving car using C++.
 
-* cmake >= 3.5
- * All OSes: [click here for installation instructions](https://cmake.org/install/)
-* make >= 4.1
-  * Linux: make is installed by default on most Linux distros
-  * Mac: [install Xcode command line tools to get make](https://developer.apple.com/xcode/features/)
-  * Windows: [Click here for installation instructions](http://gnuwin32.sourceforge.net/packages/make.htm)
-* gcc/g++ >= 5.4
-  * Linux: gcc / g++ is installed by default on most Linux distros
-  * Mac: same deal as make - [install Xcode command line tools]((https://developer.apple.com/xcode/features/)
-  * Windows: recommend using [MinGW](http://www.mingw.org/)
+
+
+## Content of this project:
+
+src a directory with the project code:
+
+main.cpp - reads in data, calls a function to run the Kalman filter, calls a function to calculate RMSE
+
+FusionEKF.cpp - initializes the filter, calls the predict function, calls the update function
+
+kalman_filter.cpp- defines the predict function, the update function for lidar, and the update function for radar
+
+tools.cpp - a function to calculate RMSE and the Jacobian matrix
+
+data a directory with two input files, provided by Udacity
+
+Docs a directory with files formats description
+
 
 ## Basic Build Instructions
 
